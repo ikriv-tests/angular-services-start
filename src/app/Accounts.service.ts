@@ -1,4 +1,10 @@
 export class AccountsService {
+    static id : number = 0;
+
+    constructor() {
+        console.log(`Constructed AccountsService #${++AccountsService.id}`);
+    }
+
     accounts = [
         {
           name: 'Master Account',
