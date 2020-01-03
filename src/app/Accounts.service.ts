@@ -1,7 +1,9 @@
+import { LoggingService } from "./logging.service";
+
 export class AccountsService {
     static id : number = 0;
 
-    constructor() {
+    constructor(private logger: LoggingService) {
         console.log(`Constructed AccountsService #${++AccountsService.id}`);
     }
 
@@ -22,10 +24,12 @@ export class AccountsService {
       
     addAccount(name:string, status: string) {
         this.accounts.push({name, status});
+        this.logger.logStatusChange(status);
     }
 
     updateStatus(id: number, status: string) {
-        this.accounts[id].status = status;    
+        this.accounts[id].status = status;  
+        this.logger.logStatusChange(status);  
     }
 
 }
